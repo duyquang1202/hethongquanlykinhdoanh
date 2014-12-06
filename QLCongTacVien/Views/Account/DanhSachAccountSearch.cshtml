@@ -1,0 +1,241 @@
+﻿@{
+    Layout = null;
+}
+@using QLCongTacVien.Models;
+@using MvcPaging;
+@model AccountModel
+@{
+    Layout = null;
+    AjaxOptions ajaxTaoPhongBanSearch = new AjaxOptions
+    {
+        UpdateTargetId = "resultsearch",
+        LoadingElementDuration = 20000,
+        OnBegin = "openBUI('resultsearch')",
+        OnSuccess = "closeBUI('resultsearch')"
+    };
+    AjaxOptions ajaxTaoPhongBan = new AjaxOptions
+    {
+        UpdateTargetId = "content",
+        LoadingElementDuration = 20000,
+        OnBegin = "openBUI('result')",
+        OnSuccess = "closeBUI('result')"
+    };
+}
+@{
+    var t = Model.ListAccount.PageIndex + 1;
+    var sSort = ViewBag.sSort == "ASC" ? "DESC" : "ASC";
+}
+<script type="text/javascript">
+    $(function () {
+        $('#optPageSizesSearch').change(function (evt) {
+            openBUI('resultsearch');
+            if ($(this).val() != "-1") {
+                $.ajax({
+                    url: "/Account/DanhSachAccountSearch",
+                    type: 'POST',
+                    data: { pagesize: $(this).val(), sField: "@ViewBag.sField", sSort: "@ViewBag.sSort", MaPhongBan: "@Model.MaPhongBan", sTenAccount: "@Model.sTenAccount", LoaiAccount: "@ViewBag.LoaiAccount" },
+                    success: function (response) {
+                        closeBUI('resultsearch');
+                        $('#resultsearch').html(response);
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                        closeBUI('resultsearch');
+                    }
+                });
+            }
+        });
+
+      
+    
+    });
+    function getDanhSachAccountSearch(MaPhongBan, LoaiAccount, sTenAccount, sField, sSort, page, pagesize) {
+        openBUI('resultsearch');
+        $.ajax({
+            url: "/Account/DanhSachAccountSearch",
+            type: 'POST',
+            data: { sField: sField, sSort: sSort, page: page, pagesize: pagesize, MaPhongBan: MaPhongBan, sTenAccount: sTenAccount, LoaiAccount: LoaiAccount },
+            success: function (response) {
+                closeBUI('resultsearch');
+                $('#resultsearch').html(response);
+            },
+            error: function (xhr) {
+                alert('error');
+                closeBUI('resultsearch');
+            }
+        });
+    }
+ 
+
+   
+</script>
+
+  <div>
+                            <table width="100%" cellspacing="0" cellpadding="0" border="0" class="list accounts">
+	                            <thead var="header">
+		                           <tr>
+
+			                            <th class="id first"><input type="checkbox" onclick="checkAll(this);" id="chkSelectAll"></th>
+			                            <th onclick="getDanhSachAccountSearch('@Model.MaPhongBan','@ViewBag.LoaiAccount','@Model.sTenAccount','TenAccount','@sSort',@t,@Model.ListAccount.PageSize);" class="name sortable sorted-@{if (ViewBag.sField == "TenAccount")
+                                                                                                                                                       {@ViewBag.sIcon}}"><span class="text">Tên Account</span></th>
+                                        <th onclick="getDanhSachAccountSearch('@Model.MaPhongBan','@ViewBag.LoaiAccount','@Model.sTenAccount','TrangThai','@sSort',@t,@Model.ListAccount.PageSize);" class="trangthai sortable sorted-@{if (ViewBag.sField == "TrangThai")
+                                                                                                                                                                   {@ViewBag.sIcon}}"><span class="text">Trạng Thái</span></th>
+			                           <th onclick="getDanhSachAccountSearch('@Model.MaPhongBan','@ViewBag.LoaiAccount','@Model.sTenAccount','LoaiAccount','@sSort',@t,@Model.ListAccount.PageSize);" class="loaiaccount sortable sorted-@{if (ViewBag.sField == "LoaiAccount")
+                                                                                                                                                                   {@ViewBag.sIcon}}"><span class="text">Loại Account</span></th>
+                                       <th onclick="getDanhSachAccountSearch('@Model.MaPhongBan','@ViewBag.LoaiAccount','@Model.sTenAccount','AccountManager','@sSort',@t,@Model.ListAccount.PageSize);" class="accountmanager sortable sorted-@{if (ViewBag.sField == "AccountManager")
+                                                                                                                                                                   {@ViewBag.sIcon}}"><span class="text">Account Manager</span></th>
+			                            <th  class="ghichu  "><span class="text">Ghi Chú</span>
+			                            </th>
+			                            <th onclick="getDanhSachAccountSearch('@Model.MaPhongBan','@ViewBag.LoaiAccount','@Model.sTenAccount','UserTao','@sSort',@t,@Model.ListAccount.PageSize);" class="usertao sortable sorted-@{if (ViewBag.sField == "UserTao")
+                                                                                                                                                      {@ViewBag.sIcon}}"><span class="text">User Tạo</span></th>
+			                            <th onclick="getDanhSachAccountSearch('@Model.MaPhongBan','@ViewBag.LoaiAccount','@Model.sTenAccount','UserUpdate','@sSort',@t,@Model.ListAccount.PageSize);" class="usercapnhat sortable sorted-@{if (ViewBag.sField == "UserUpdate")
+                                                                                                                                                             {@ViewBag.sIcon}}"><span class="text">User Cập Nhật</span></th>
+                                         <th onclick="getDanhSachAccountSearch('@Model.MaPhongBan','@ViewBag.LoaiAccount','@Model.sTenAccount','NgayTao','@sSort',@t,@Model.ListAccount.PageSize);" class="ngaytao sortable sorted-@{if (ViewBag.sField == "NgayTao")
+                                                                                                                                                                {@ViewBag.sIcon}}"><span class="text">Ngày Tạo</span></th>
+                                         <th onclick="getDanhSachAccountSearch('@Model.MaPhongBan','@ViewBag.LoaiAccount','@Model.sTenAccount','NgayUpdate','@sSort',@t,@Model.ListAccount.PageSize);" class="ngaycapnhat sortable sorted-@{if (ViewBag.sField == "NgayUpdate")
+                                                                                                                                                                       {@ViewBag.sIcon}}"><span class="text">Ngày Cập Nhật</span></th>
+                                         <th class="chucnang"><span class="text">Chức năng</span></th>
+		                            </tr>
+	                            </thead>
+	                            <tbody class="container" var="container">	
+                                       
+                                        @if (Model.ListAccount.Count() > 0)
+                                        {
+                                            int i = 0;
+                                            foreach (var item in Model.ListAccount)
+                                            {
+                                                string strClass = "";
+                                                if (i % 2 == 0)
+                                                {
+                                                    strClass = "class=even";
+                                                }
+                                                 <tr id="ox--account--@item.MaAccount" @strClass>
+					                                <td class="id"><input type="checkbox" name="check_id" id="check_id-@item.MaAccount"  value="@item.MaAccount"></td>
+					                                <td class="name initTooltip">
+                                                            @if(item.LoaiAccount!="QL")
+                                                            {
+                                                                @Ajax.ActionLink(item.TenAccount, "DanhSachUser", "User", new { @MaAccount = item.MaAccount }, ajaxTaoPhongBan, null)
+                                                            }
+                                                            else
+                                                            {
+                                                                @Ajax.ActionLink(item.TenAccount, "DanhSachAccountSearch", "Account", new { @MaPhongBan = Model.MaPhongBan,@sTenAccount=@Model.sTenAccount,@LoaiAccount=item.LoaiAccount  }, ajaxTaoPhongBanSearch, null)    
+                                                            }
+                                                            
+									                   
+						                           </td>
+                                                    <td class="trangthai initTooltip">
+                                                         @{
+                                                var strTrangThai = "";
+                                                var color = "";
+                                                if (item.TrangThai == 1)
+                                                {
+                                                    strTrangThai = "Hoạt động";
+                                                    color = "color:#0863a0;";
+                                                }
+                                                else
+                                                {
+                                                    strTrangThai = "Ngừng Hoạt động";
+                                                    color = "color:red;";
+                                                }
+                                                          }
+                                                            @Ajax.ActionLink(strTrangThai, "ActiveAccountSearch", new {@MaPhongBan=Model.MaPhongBan ,@MaAccount = item.MaAccount,@LoaiAccount=ViewBag.LoaiAccount, @Status = item.TrangThai, @sField = ViewBag.sField, @sSort = ViewBag.sSort, @page = t, @pagesize = Model.ListAccount.PageSize,@sTenAccount=@Model.sTenAccount  }, ajaxTaoPhongBanSearch, new { @style = color })
+									                   
+                                                      
+                                                             
+
+									                   
+						                           </td>
+                                                    <td class="loaiaccount initTooltip">
+                                                       @if(item.LoaiAccount=="AD")
+                                                       {
+                                                           <span>Admin</span>
+                                                       }
+                                                       else if(item.LoaiAccount=="QL")
+                                                       {
+                                                           <span>Quản lý</span>
+                                                       }
+                                                       else if(item.LoaiAccount=="KD")
+                                                       {
+                                                           <span>Kinh doanh</span>
+                                                       }
+                                                       else
+                                                       {
+                                                           <span>Cộng tác viên</span>
+                                                       }
+						                           </td>
+                                                     <td class="loaiaccount initTooltip">
+                                                    @item.tblAccount2.TenAccount
+						                           </td>
+					                           
+					                                <td class="ghichu">@item.GhiChu</td>
+					                                <td class="usertao">@item.UserTao</td>
+					                                <td class="usercapnhat">
+                                                        @item.UserUpdate
+											        </td>
+                                                     <td class="ngaytao">
+                                                        @item.NgayTao
+											        </td>
+                                                    <td class="ngaycapnhat">
+                                                         @item.NgayUpdate
+											        </td>
+                                                    <td class="chucnang">
+                                                        @Ajax.ActionLink("a", "EditAccount", new { @id = item.MaAccount,@LoaiAccount=ViewBag.LoaiAccount, @sField = ViewBag.sField, @sSort = ViewBag.sSort, @page = t, @pagesize = Model.ListAccount.PageSize, @MaPhongBan = Model.MaPhongBan,@sTenAccount=@Model.sTenAccount  }, ajaxTaoPhongBan, new { @class = "action initTooltip edit", @title = "Edit" })
+                                                    
+											        </td>
+				                             </tr>
+                                                i++;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr class="even">
+				                                <td colspan="9" align="center">Không có account nào.</td>
+			                                </tr>
+                                        }  
+                                	  
+					            </tbody>
+	                            <tfoot var="footer"></tfoot>
+                            </table>
+                            </div>
+                            <div style="clear:both;"></div>
+                            
+                         @if (Model.ListAccount.Count() > 0)
+                         {
+                                
+                            
+                                <div class="pager">
+                           
+                                    @Html.Pager(Model.ListAccount.PageSize, Model.ListAccount.PageNumber, Model.ListAccount.TotalItemCount, new AjaxOptions { UpdateTargetId = "content", OnBegin = "openBUI('result')", OnSuccess = "closeBUI('result')" }, "Trang đầu", "Trang trước", "Trang tiếp", "Trang cuối").Options(
+                                                   o => o.Action("DanhSachAccountSearch").
+                                                  AddRouteValue("pagesize", Model.ListAccount.PageSize).
+                                                  AddRouteValue("sField", ViewBag.sField).
+                                                  AddRouteValue("sSort", ViewBag.sSort).
+                                                  AddRouteValue("MaPhongBan", Model.MaPhongBan).
+                                                  AddRouteValue("sTenAccount",Model.sTenAccount).
+                                                  AddRouteValue("LoaiAccount",ViewBag.LoaiAccount)
+                                            )
+                          
+                             </div>
+                            <div style="clear:both;"></div>
+
+                            <div class="paginateInfo" id="Pagination">
+                                <div style="margin-bottom: 5px;margin-top: 5px">
+                                  @{
+                             List<SelectListItem> items = new List<SelectListItem>();
+                             items.Add(new SelectListItem() { Text = "5", Value = "5", Selected = (Model.ListAccount.PageSize == 5 ? true : false) });
+                             items.Add(new SelectListItem() { Text = "10", Value = "10", Selected = (Model.ListAccount.PageSize == 10 ? true : false) });
+                             items.Add(new SelectListItem() { Text = "15", Value = "15", Selected = (Model.ListAccount.PageSize == 15 ? true : false) });
+                             items.Add(new SelectListItem() { Text = "20", Value = "20", Selected = (Model.ListAccount.PageSize == 20 ? true : false) });
+                             items.Add(new SelectListItem() { Text = "30", Value = "30", Selected = (Model.ListAccount.PageSize == 30 ? true : false) });
+                             items.Add(new SelectListItem() { Text = "50", Value = "50", Selected = (Model.ListAccount.PageSize == 50 ? true : false) });
+                             items.Add(new SelectListItem() { Text = "100", Value = "100", Selected = (Model.ListAccount.PageSize == 100 ? true : false) });
+                                      }    
+                                    
+                                   
+                                    Display:   @Html.DropDownList("optPageSizesSearch", items, new { @style = "width:50px;", @id = "optPageSizesSearch" })
+                                      
+                                </div>
+                            </div> 
+                         
+                            <div style="clear:both;"></div>
+                         }

@@ -1,0 +1,358 @@
+/*GLOBAL*/
+body{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    color: #434343;
+}
+a{
+    color: #2F7AB3;
+    text-decoration: none;
+}
+a:hover{
+    color: #CC0505;
+    
+}
+form ul li{
+    overflow: hidden;
+}
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+p.last_editor{
+    margin: 0;
+    text-align: right;
+    color: #BBBBBB;
+    font-size: 11px;
+}
+.sort{
+    cursor: pointer;
+}
+.sort:hover{
+    box-shadow: 0 5px 10px #CCCCCC inset;
+    color: #CC0505;
+}
+.ASC{
+    background: url("images/sort-arrow-asc.png") no-repeat 98% 50%;
+}
+.DESC{
+    background: url("images/sort-arrow-desc.png") no-repeat 98% 50%;
+}
+ul li{
+    padding: 5px;
+}
+img{
+    border: none;
+}
+input[type=checkbox]{
+    cursor: pointer;
+}
+
+input[type="text"], input[type="password"], select, textarea {
+    background-clip: border-box;
+    border-color: #AAAAAA #CCCCCC #CCCCCC #AAAAAA;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    color: #333333;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    outline: 0 none;
+    padding: 5px;
+    transition-duration: 0.2s;
+    transition-property: border-color, box-shadow;
+    transition-timing-function: ease-in-out;
+}
+input[type="text"]:focus, textarea:focus {
+    border-color: #999999;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
+}
+.warning{
+    background: url("images/warning.gif") no-repeat left top;
+    text-align: left;
+    padding-left: 18px;
+    display: block;
+    margin: auto;
+    line-height: 20px;
+    max-width: 200px;
+}
+
+#divHeaderPage {
+    background: url("images/topbg.png") repeat-x scroll center top rgba(0, 0, 0, 0);
+    border: 1px solid #E3E3E3;
+    box-shadow: 0 1px 1px #ECEAEA;
+    height: 16px;
+    overflow: hidden;
+    padding: 3px 0;
+}
+
+#divBannerPage {
+    background-color: #FFFFFF;
+    height: 37px;
+    overflow: hidden;
+    padding: 10px 20px;
+}
+
+#divBar {
+    background: url("images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll center top rgba(0, 0, 0, 0);
+    height: 26px;
+    padding-top: 5px;
+}
+
+.headLine{
+    height: 3px;
+    background: url("images/topbg.png") repeat-x scroll center top rgba(0, 0, 0, 0);
+    margin: 2px auto ;
+}
+
+#wrapper_content {
+    border: 0 solid #99FF66;
+    height: auto;
+    min-width: 780px;
+}
+
+#menuleft {
+    background-color: #EEEEEE;
+    float: left;
+    height: auto;
+    margin: 0;
+    min-width: 210px;
+}
+
+#contentright {
+    height: auto;
+    margin-left: 215px;
+}
+
+#menuV2, #menuV2 ul {
+    width: 210px;
+    border: 1px solid #ccc;
+    border-top:none;
+    position: relative; font-size:0;
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+    display:block;
+}
+
+#menuV2 li {
+    background: #FFF url(images/bgmenu.gif) repeat-x 0 2px;
+    list-style: none; margin: 0; padding: 0;
+}
+#menuV2 li a {
+    border-top: 1px solid #ccc;
+    display: block;
+    text-decoration: none;
+    line-height:26px;
+    padding-left:20px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;            
+}
+#menuV2 ul li a {
+    line-height:30px;
+}
+
+#menuV2 li:hover, #menuV2 li.onhover{
+    background-position:0 -62px;
+}
+#menuV2 ul li{
+    background: #F0F1F4;
+}
+.itemSelected{
+    background:#DBDBDB !important;
+}
+
+.subSelected{
+    background: #FFF !important;
+}
+.center{
+    text-align: center;
+}
+.left{
+    text-align: left;
+}
+#menuV2 ul li:hover, #menuV2 ul li.onhover{
+    background: #FFF;
+}
+
+#menuV2 ul.sub li a{
+    padding-left: 40px;
+    text-transform: none;
+}
+
+#menuV2 ul.sub{
+    border: none;
+}
+#menuV2 ul.sub_sub{
+    border: none;
+}
+
+/*Drop down menu*/
+#DropAccount {
+    color: #555555;
+    height: 17px;
+    margin: 3px 0 0;
+    position: absolute;
+    right: 13px;
+    text-align: left;
+    top: 0;
+    width: 143px;
+}
+#DropAccount .head {
+    background: url("images/arrow-down.png") no-repeat scroll 116px 17px rgba(0, 0, 0, 0);
+    color: #FFFFFF !important;
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 28px;
+    line-height: 16px;
+    margin: -11px 0 0 -10px;
+    padding: 11px 0 0 45px;
+    position: absolute;
+    text-decoration: none;
+    width: 121px;
+    z-index: 110;
+}
+
+#DropAccount .sub {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+    display: none;
+    padding: 5px 0;
+    position: absolute;
+    right: 0;
+    top: 15px;
+    width: auto;
+    z-index: 100000;
+}
+
+#DropAccount .root {
+    border-top: 1px solid #DEDEDE;
+    font-size: 11px;
+    list-style: none outside none;
+    margin: 0;
+    padding: 11px 0 0;
+}
+
+#DropAccount li a {
+    color: #555555;
+    cursor: pointer;
+    display: block;
+    font-family: arial;
+    font-weight: bold;
+    padding: 6px 15px;
+    text-decoration: none;
+}
+#DropAccount li a:hover {
+    background: none repeat scroll 0 0 #2F7AB3;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+/*content right*/
+#contentright #divContentPage {
+    overflow: hidden;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+#contentright .divTitlePage {
+    background: url("images/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll center 50% rgba(0, 0, 0, 0);
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    height: 28px;
+    margin-left: 0;
+    padding-left: 10px;
+    padding-top: 9px;
+    width: 99%;
+}
+#contentright .divButton{
+    overflow: hidden;
+    padding: 5px 10px 5px 10px;
+}
+
+/*Pagination*/
+#Pagination{
+    padding: 5px;
+}
+#Pagination a{
+    color: #666666 !important;
+}
+#Pagination .pager_link{
+    display: inline-block;
+    padding: 3px 7px;
+    margin-right: 4px;
+    border-radius: 3px;
+    border: solid 1px #c0c0c0;
+    background: #e9e9e9;
+    box-shadow: inset 0px 1px 0px rgba(255,255,255, .8), 0px 1px 3px rgba(0,0,0, .1);
+    font-size: .875em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #717171;
+    text-shadow: 0px 1px 0px rgba(255,255,255, 1);
+    cursor: pointer;
+}
+#Pagination .pager_link:hover {
+    background: #fefefe;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FEFEFE), to(#f0f0f0));
+    background: -moz-linear-gradient(0% 0% 270deg,#FEFEFE, #f0f0f0);
+}
+#Pagination .pager_link.active {
+    border: none;
+    background: #B3B3B3;
+    box-shadow: inset 0px 0px 8px rgba(0,0,0, .5), 0px 1px 0px rgba(255,255,255, .8);
+    color: #f0f0f0;
+    text-shadow: 0px 0px 3px rgba(0,0,0, .5);
+    cursor: default;
+}
+
+.ColText {
+    float: left;
+    margin-right: 3px;
+    padding-top: 3px;
+    text-align: right;
+    width: 130px;
+}
+.ColInput{
+    float: left;
+}
+
+/*Layout devide percent*/
+.percent_wrapper {
+    border: 1px solid #bbbbbb;
+    border-bottom: none;
+}
+/*css head*/
+.percent_wrapper .head {
+    color: #888888;
+    border-bottom: 1px solid #bbbbbb;
+    overflow: hidden;
+    text-align: center;
+    font-weight: bold;
+    background: url("../pic/thead-bg.png") repeat-x scroll left top #EEEEEE;
+    
+}
+/*css rows*/
+.percent_wrapper .rows{
+    border-bottom: 1px solid #bbbbbb;
+    overflow: hidden;
+}
+/*css region*/
+.percent_wrapper .regions {
+    border-right: 1px solid #bbbbbb;
+    float: left;
+    min-height: 20px;
+    padding: 5px;
+    overflow: hidden;
+}

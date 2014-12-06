@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/css/styles.css")" type="text/css" rel="stylesheet">
+    <link href="@Url.Content("~/Content/Site.css")" type="text/css" rel="stylesheet">
+    <link href="@Url.Content("~/Content/css/ui.datepicker.css")" type="text/css" rel="stylesheet">
+    <link href="@Url.Content("~/Content/css/jquery-ui.css")" type="text/css" rel="stylesheet">
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Content/js/jquery/jquery.ui.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/css/chosen.css")" type="text/css" rel="stylesheet">
+    <link href="@Url.Content("~/Content/js/multiselect/jquery.multiselect.css")" type="text/css" rel="stylesheet">
+    <link href="@Url.Content("~/Content/js/multiselect/jquery.multiselect.filter.css")" type="text/css" rel="stylesheet">
+
+    <script type="text/javascript" src="@Url.Content("~/Content/js/multiselect/src/jquery.multiselect.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/multiselect/src/jquery.multiselect.filter.js")"></script>
+
+    <script src="@Url.Content("~/Content/js/jquery/jquery.blockUI.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/js/jquery.ambient.min.js")" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/js/chosen.jquery.js")"></script>
+    <script src="@Url.Content("~/Content/js/typeWatch.js")" type="text/javascript"></script>
+
+    <script src="@Url.Content("~/Content/js/common.js")" type="text/javascript"></script>
+    <script src="../../Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        /*alert jquery ui*/
+        function alertUI(mess) {
+            $('<div style="padding: 20px 50px; max-width: 500px; word-wrap: break-word;font-size:12px">' + mess + '</div>').dialog({
+                draggable: false,
+                modal: true,
+                resizable: false,
+                width: 'auto',
+                position: [($(window).width() / 2) - (300 / 2), 250],
+                title: 'Message',
+                minHeight: 75,
+                buttons: { OK: function () { $(this).dialog('destroy'); } }
+            });
+        }
+
+        $(document).ready(function () {
+            initPage();
+            $(".userMenu").click(function () {
+                var X = $(this).attr('id');
+                if (X == 1) {
+                    $(".submenu").hide();
+                    $(this).attr('id', '0');
+                }
+                else {
+                    $(".submenu").show();
+                    $(this).attr('id', '1');
+                }
+            });
+            //Document Click
+            $(document).mouseup(function () {
+                $(".submenu").hide();
+                $("#search_result").hide();
+                $(".userMenu").attr('id', '');
+            });
+            $("#key_global").delayKeyup(function () {
+                searchResult();
+            });
+
+
+        });
+
+        function checkAll(toggle) {
+            var checkboxes = document.forms['frmSearch'].getElementsByTagName('input');
+            if ($("#chkSelectAll").attr('checked') == true) {
+                for (i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].type === 'checkbox') {
+                        checkboxes[i].checked = toggle.checked;
+                    }
+                }
+            } else {
+                for (i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].type === 'checkbox') {
+                        checkboxes[i].checked = toggle.checked;
+                    }
+                }
+            }
+        }
+
+        function initPage() {
+            /*$('#divAnnouncement').scrollToFixed({
+            marginTop: 0
+            });*/
+            $('#btn-close-message').click(function () {
+                $('#divAnnouncement').hide();
+                var sId = $(this).attr("data");
+                var cookie_abdMemberNotice = $.cookie("abdMemberNotice");
+                cookie_abdMemberNotice = sId + cookie_abdMemberNotice;
+                $.cookie("abdMemberNotice", cookie_abdMemberNotice, { path: '/' });
+                console.log("abdMemberNotice: " + cookie_abdMemberNotice);
+            });
+        }
+
+        function openBUI(sId) {
+            $('#' + sId).block({
+                message: '<img src="@Url.Content("~/Content/images/ajax-loader.gif")" border="0"><h3></h3>',
+                css: {
+                    border: 'none',
+                    padding: '5px',
+                    opacity: 100,
+                    width: '15%',
+                    background: 'none'
+                }
+            });
+        }
+        function closeBUI(sId) {
+            $("#" + sId).unblock();
+        }
+
+        function loadChoosen() {
+            var config = {
+                '.chosen-select': {},
+                '.chosen-select-deselect': { allow_single_deselect: true },
+                '.chosen-select-no-single': { disable_search_threshold: 10 },
+                '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+                '.chosen-select-width': { width: '95%' }
+            }
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+            }
+        }
+
+
+    </script>
+
+</head>
+<body style="cursor: auto;">
+
+    <div id="wholepage">
+        <style>
+            #search_result {
+                background: none repeat scroll 0 0 #FFFFFF;
+                border-radius: 6px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+                padding: 5px 0;
+                position: absolute;
+                right: 0;
+                top: 15px;
+                width: auto;
+                z-index: 100000;
+            }
+        </style>
+        <div id="header">
+            <a class="logo" href=""></a>
+            <div id="toolbar">
+                <div class="ox3-widget-toolbar" id="Toolbar" style="display: block;">
+                    <div class="userMenu">
+                        <div class="bcItem">
+                            <span class="bcLabel truncated"><span style="max-width: 777px;">quang.vo@ambientdigitalgroup.com</span></span>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <a href="#logout" class="logout">Logout</a>
+
+                    <form onsubmit="seeAllResult();return false;" class="search">
+
+                        <div class="search-box">
+                            <div class="sLeft"></div>
+                            <div class="sMain">
+                                <input type="text" autocomplete="off" id="key_global" name="key_global" placeholder="">
+                            </div>
+                            <div class="sRight"></div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div id="navigation">
+                @{Html.RenderAction("Menu", "Menu");}
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <div style="right:180px;top:35px;" class="submenu">
+                <ul class="root">
+                    <li><a onclick="formEditMyAccount(1);" href="javascript:void(0);">My account</a></li>
+                    <li><a onclick="changePassword(1386227638);" href="javascript:void(0);">Change Password</a></li>
+                    <li><a href="http://ssp.serving-system.com.vn/adminpanel/">Admin Access</a></li>
+                    <li> @Html.ActionLink("Logout", "LogOut", "Account")</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Search result -->
+        <div id="search_result_wapper" class="dropdown">
+        </div>
+
+        <div id="content">
+            @RenderBody()
+        </div>
+
+        <div style="display: none; height: 100%; width: 400px; text-align: left; overflow: auto;" id="divchangePassword"></div>
+
+    </div>
+</body>
+</html>

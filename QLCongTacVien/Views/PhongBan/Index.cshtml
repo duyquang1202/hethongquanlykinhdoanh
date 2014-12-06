@@ -1,0 +1,353 @@
+﻿@using QLCongTacVien.Models;
+@using MvcPaging;
+@model LstPhongBanModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    AjaxOptions ajaxTaoPhongBan = new AjaxOptions
+    {
+        UpdateTargetId = "content",
+        LoadingElementDuration = 20000,
+        OnBegin = "openBUI('result')",
+        OnSuccess = "closeBUI('result')"
+    };
+}
+@{
+    var t = Model.ListPhongBan.PageIndex + 1;
+    var sSort = ViewBag.sSort == "ASC" ? "DESC" : "ASC";
+}
+<script type="text/javascript">
+    $(function () {
+        $('#optPageSizes').change(function (evt) {
+            openBUI('result');
+            if ($(this).val() != "-1") {
+                $.ajax({
+                    url: "/PhongBan/DanhSachPhongBan",
+                    type: 'POST',
+                    data: { pagesize: $(this).val(), sField: "@ViewBag.sField", sSort: "@ViewBag.sSort",sTenPhongBan:"@Model.sTenPhongBan" },
+                    success: function (response) {
+                        closeBUI('result');
+                        $('#content').html(response);
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                        closeBUI('result');
+                    }
+                });
+            }
+        });
+
+        var delay = (function () {
+            var timer = 0;
+            return function (callback, ms) {
+                clearTimeout(timer);
+                timer = setTimeout(callback, ms);
+            };
+        })();
+
+        var duplicateFilter = (function () {
+            var lastContent;
+            return function (content, callback) {
+                content = $.trim(content);
+                if (content != lastContent) {
+                    callback(content);
+                }
+                lastContent = content;
+            };
+        })();
+
+        $("#result").delegate('#phongban_name', 'keyup', function (event) {
+            var self = this;
+            delay(function () {
+                duplicateFilter($(self).val(), function (c) {
+                    var tenphongban = $('#phongban_name').val();
+                    SearchPhongBan("@ViewBag.sField","@ViewBag.sSort", @t , @Model.ListPhongBan.PageSize , tenphongban);
+
+                });
+            }, 500);
+
+        });
+
+    });
+
+    function SearchPhongBan(sField, sSort, page, pagesize, tenphongban) {
+        openBUI('resultsearch');
+        $.ajax({
+            url: "/PhongBan/DanhSachPhongBanSearch",
+            type: 'POST',
+            data: { sField: sField, sSort: sSort, page: page, pagesize: pagesize,sTenPhongBan:tenphongban },
+            success: function (response) {
+                closeBUI('resultsearch');
+                $('#resultsearch').html(response);
+            },
+            error: function (xhr) {
+                alert('error');
+                closeBUI('resultsearch');
+            }
+        });
+    }
+
+    function getDanhSachPhongBan(sField,sTenPhongBan, sSort, page, pagesize) {
+        openBUI('result');
+        $.ajax({
+            url: "/PhongBan/DanhSachPhongBan",
+            type: 'POST',
+            data: { sField: sField,sTenPhongBan:sTenPhongBan, sSort: sSort, page: page, pagesize: pagesize },
+            success: function (response) {
+                closeBUI('result');
+                $('#content').html(response);
+            },
+            error: function (xhr) {
+                alert('error');
+                closeBUI('result');
+            }
+        });
+    }
+
+    function getDanhSachUserSameAccount(MaUser){       
+        openBUI('result');
+        $.ajax({
+            url: "/User/DanhSachUserSameAccount",
+            type: 'POST',
+            data: { MaUser:MaUser },
+            success: function (response) {
+                closeBUI('result');
+                $('#content').html(response);
+            },
+            error: function (xhr) {
+                alert('error');
+                closeBUI('result');
+            }
+        });
+     
+    }
+</script>
+<div class="holder ox3-app enterprise-view" style="height: auto;">
+    <div class="ox3-widget-page-accounts ox3-widget-page" id="PageAccounts" style="display: block;">           		
+        <div style="clear:both;"></div> 
+            <div id="loadhead">
+                <div id="headwrap">
+	                <div id="breadcrumb">
+		                <ul class="bcList ox3-widget-breadcrumb-accounts" id="BreadcrumbAccounts">
+			                <li>
+				                <div class="bcItem" id="subMenu">
+					                <a onclick="getDanhSachPhongBan('@ViewBag.sField','@Model.sTenPhongBan','@ViewBag.sSort',1,10);" href="javascript:void(0);" rel="tab" class="bcLink"><span class="bcLabel">Phòng Ban</span></a>
+					                <div class="bcButton"></div>
+				                </div>
+			                </li>
+			                <div class="clear"></div>
+		                </ul>
+	                </div>
+	                <div class="head head-accounts">		
+			                <h1></h1>
+			                <div class="clear">&nbsp;</div>
+	                </div>
+                </div>
+            <div id="ribbon_nav" class="ox3-widget-nav-ribbon_tabs">
+		        <a href="javascript:void(0);" id="publishers" class="ox3-widget-button active first">
+		            <div class="center">
+			            <div var="icon"></div>
+			            <div var="label container" class="label container">Danh Sách Phòng Ban</div>
+		            </div>
+	            </a>
+                @if (ViewBag.LoaiAccount == "AD")
+                {
+                 <a href="javascript:void(0);"  onclick="getDanhSachUserSameAccount('@ViewBag.MaUser');" id="publishers" class="ox3-widget-button first">
+		                <div class="center">
+			                <div var="icon"></div>
+			                <div var="label container" class="label container">Danh Sách User</div>
+		                </div>
+	             </a>     
+                }
+                 
+		    </div>
+        </div>	
+        <div style="clear:both;"></div> 
+        <div id="resultform">
+            @using (Ajax.BeginForm("XoaPhongBan", "PhongBan", null, ajaxTaoPhongBan, new { @style = "float:none;", @name = "frmSearch", @id = "frmSearch" }))
+            {
+
+           
+		   
+				<div id="result" style="position: relative; min-height: 0px;">		
+                    <div style="clear:both;"></div> 	
+                    	<div class="ox3-widget-table_list-accounts ox3-widget-table_list" id="accounts">
+                    	<!-- start action -->                    	
+						 <div class="controls" var="controls">
+							<div class="wrap-a">
+								<div class="button">
+                                    
+                                    @Ajax.ActionLink("Tạo Phòng Ban", "TaoPhongBan", new { @sField = ViewBag.sField, @sSort = ViewBag.sSort, @page = t, @pagesize = Model.ListPhongBan.PageSize ,@sTenPhongBan=Model.sTenPhongBan }, ajaxTaoPhongBan, new { @class = "bMain" })
+								    
+								</div>	
+										
+							   <div class="ox-modal-wrap bulk-action" style="position: relative; float: left;">
+									<div class="button bulk-action">
+                                        <a href="javascript:void(0);" onclick="$(this).parents('form').submit();" class="actions bMain">Xóa Phòng Ban</a>
+                                       
+									
+									</div>
+							  </div>
+							</div>
+							<div class="wrap-b">
+								<a class="toggle-filter initTooltip" title="Filter Table"></a>
+								<div class="search-box">
+									<div class="sLeft"></div>
+									<div class="sMain">
+										<input type="text" id="phongban_name" name="phongban_name" value="">
+									</div>
+									<div class="sRight"></div>
+								</div>
+							</div>
+						</div>
+						<!-- end action -->    
+                    	<div style="clear:both;"></div>
+                    	<!-- start list account -->
+                    	<div style="clear:both;"></div>
+                        <div id="resultsearch">
+                            <div>
+                            <table width="100%" cellspacing="0" cellpadding="0" border="0" class="list accounts">
+	                            <thead var="header">
+		                           <tr>
+
+			                            <th class="id first"><input type="checkbox" onclick="checkAll(this);" id="chkSelectAll"></th>
+			                            <th onclick="getDanhSachPhongBan('TenPhongBan','@Model.sTenPhongBan','@sSort',@t,@Model.ListPhongBan.PageSize);" class="name sortable sorted-@{if (ViewBag.sField == "TenPhongBan")
+                                                                                                                                                        {@ViewBag.sIcon}}"><span class="text">Tên Phòng Ban</span></th>
+                                        <th onclick="getDanhSachPhongBan('TrangThai','@Model.sTenPhongBan','@sSort',@t,@Model.ListPhongBan.PageSize);" class="trangthai sortable sorted-@{if (ViewBag.sField == "TrangThai")
+                                                                                                                                                                    {@ViewBag.sIcon}}"><span class="text">Trạng Thái</span></th>
+			                            <th class="mota  "><span class="text">Mô Tả</span></th>
+			                            <th  class="ghichu  "><span class="text">Ghi Chú</span>
+			                            </th>
+			                            <th onclick="getDanhSachPhongBan('UserTao','@Model.sTenPhongBan','@sSort',@t,@Model.ListPhongBan.PageSize);" class="usertao sortable sorted-@{if (ViewBag.sField == "UserTao")
+                                                                                                                                                       {@ViewBag.sIcon}}"><span class="text">User Tạo</span></th>
+			                            <th onclick="getDanhSachPhongBan('UserUpdate','@Model.sTenPhongBan','@sSort',@t,@Model.ListPhongBan.PageSize);" class="usercapnhat sortable sorted-@{if (ViewBag.sField == "UserUpdate")
+                                                                                                                                                              {@ViewBag.sIcon}}"><span class="text">User Cập Nhật</span></th>
+                                         <th onclick="getDanhSachPhongBan('NgayTao','@Model.sTenPhongBan','@sSort',@t,@Model.ListPhongBan.PageSize);" class="ngaytao sortable sorted-@{if (ViewBag.sField == "NgayTao")
+                                                                                                                                                                 {@ViewBag.sIcon}}"><span class="text">Ngày Tạo</span></th>
+                                         <th onclick="getDanhSachPhongBan('NgayUpdate','@Model.sTenPhongBan','@sSort',@t,@Model.ListPhongBan.PageSize);" class="ngaycapnhat sortable sorted-@{if (ViewBag.sField == "NgayUpdate")
+                                                                                                                                                                        {@ViewBag.sIcon}}"><span class="text">Ngày Cập Nhật</span></th>
+                                         <th class="chucnang"><span class="text">Chức năng</span></th>
+		                            </tr>
+	                            </thead>
+	                            <tbody class="container" var="container">
+                                    @if (Model.ListPhongBan.Count() > 0)
+                                    {	
+                                        int i = 0;                
+                                        foreach (var item in Model.ListPhongBan)
+                                        {
+                                            string strClass = "";
+                                            if (i % 2 == 0)
+                                            {
+                                                strClass = "class=even";
+                                            }
+                                             <tr id="ox--account--@item.MaPhongBan" @strClass>
+					                            <td class="id"><input type="checkbox" name="check_id" id="check_id-@item.MaPhongBan"  value="@item.MaPhongBan"></td>
+					                            <td class="name initTooltip">
+                                                        @Ajax.ActionLink(item.TenPhongBan, "DanhSachAccount", "Account", new { @MaPhongBan=item.MaPhongBan}, ajaxTaoPhongBan, null)
+									                   
+						                       </td>
+                                                <td class="trangthai initTooltip">
+                                                     @{
+                                            var strTrangThai = "";
+                                            var color = "";
+                                            if (item.TrangThai == 1)
+                                            {
+                                                strTrangThai = "Hoạt động";
+                                                color = "color:#0863a0;";
+                                            }
+                                            else
+                                            {
+                                                strTrangThai = "Ngừng Hoạt động";
+                                                color = "color:red;";
+                                            }
+                                                      }
+                                                        @Ajax.ActionLink(strTrangThai, "ActivePhongBan", new { @id = item.MaPhongBan, @status = item.TrangThai, @sField = ViewBag.sField, @sSort = ViewBag.sSort, @page = t, @pagesize = Model.ListPhongBan.PageSize,@sTenPhongBan=Model.sTenPhongBan }, ajaxTaoPhongBan, new { @style = color })
+									                   
+                                                      
+                                                             
+
+									                   
+						                       </td>
+					                            <td class="mota hasTooltip" title="">
+						                           @item.MoTaPhongBan
+					                            </td>
+					                            <td class="ghichu">@item.GhiChuPhongBan</td>
+					                            <td class="usertao">@item.UserTao</td>
+					                            <td class="usercapnhat">
+                                                    @item.UserUpdate
+											    </td>
+                                                 <td class="ngaytao">
+                                                    @item.NgayTao
+											    </td>
+                                                <td class="ngaycapnhat">
+                                                     @item.NgayUpdate
+											    </td>
+                                                <td class="chucnang">
+                                                    @Ajax.ActionLink("a", "EditPhongBan", new { @id = item.MaPhongBan,@sField = ViewBag.sField, @sSort = ViewBag.sSort, @page = t, @pagesize = Model.ListPhongBan.PageSize ,@sTenPhongBan=Model.sTenPhongBan }, ajaxTaoPhongBan, new { @class = "action initTooltip edit", @title = "Edit" })
+                                                    
+											    </td>
+				                         </tr>
+                                            i++;
+                                        }
+								       
+                                        }
+                                        else
+                                        {
+                                             <tr class="even">
+				                                <td colspan="10" align="center">Không có phòng ban nào.</td>
+			                                </tr>
+                                        }
+                                      
+					            </tbody>
+	                            <tfoot var="footer"></tfoot>
+                            </table>
+                            </div>
+                            <div style="clear:both;"></div>
+                         @if (Model.ListPhongBan.Count() > 0)
+                         {    
+
+                            <div class="pager">
+                            @Html.Pager(Model.ListPhongBan.PageSize, Model.ListPhongBan.PageNumber, Model.ListPhongBan.TotalItemCount, new AjaxOptions { UpdateTargetId = "content", OnBegin = "openBUI('result')", OnSuccess = "closeBUI('result')" }, "Trang đầu", "Trang trước", "Trang tiếp", "Trang cuối").Options(
+                                           o => o.Action("DanhSachPhongBan").
+                                          AddRouteValue("pagesize", Model.ListPhongBan.PageSize).
+                                          AddRouteValue("sField", ViewBag.sField).
+                                          AddRouteValue("sSort", ViewBag.sSort).
+                                          AddRouteValue("sTenPhongBan",Model.sTenPhongBan)
+                                    )
+                          
+                            </div>
+                                <div style="clear:both;"></div>
+
+                                <div class="paginateInfo" id="Pagination">
+                                    <div style="margin-bottom: 5px;margin-top: 5px">
+                                      @{
+                             List<SelectListItem> items = new List<SelectListItem>();
+                             items.Add(new SelectListItem() { Text = "5", Value = "5", Selected = (Model.ListPhongBan.PageSize == 5 ? true : false) });
+                             items.Add(new SelectListItem() { Text = "10", Value = "10", Selected = (Model.ListPhongBan.PageSize == 10 ? true : false) });
+                             items.Add(new SelectListItem() { Text = "15", Value = "15", Selected = (Model.ListPhongBan.PageSize == 15 ? true : false) });
+                             items.Add(new SelectListItem() { Text = "20", Value = "20", Selected = (Model.ListPhongBan.PageSize == 20 ? true : false) });
+                             items.Add(new SelectListItem() { Text = "30", Value = "30", Selected = (Model.ListPhongBan.PageSize == 30 ? true : false) });
+                             items.Add(new SelectListItem() { Text = "50", Value = "50", Selected = (Model.ListPhongBan.PageSize == 50 ? true : false) });
+                             items.Add(new SelectListItem() { Text = "100", Value = "100", Selected = (Model.ListPhongBan.PageSize == 100 ? true : false) });
+                                          }    
+                                    
+                                   
+                                        Display:   @Html.DropDownList("optPageSizes", items, new { @style = "width:50px;", @id = "optPageSizes" })
+                                      
+                                    </div>
+                                </div> 
+                                <div style="clear:both;"></div>
+                         }
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                </div>	
+                <div style="clear:both;"></div>
+            }
+		</div>	
+       <div style="clear:both;"></div> 
+    </div>
+ </div>
+ <div class="clear">&nbsp;</div>
+  
+

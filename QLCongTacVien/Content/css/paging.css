@@ -1,0 +1,34 @@
+.pagination a {
+	margin:0 5px 0 0;
+	padding:3px 6px
+}
+.pagination a.number {
+	border:1px solid #ddd;
+	font-weight:bolder;
+	background:#469400 url(../images/bg-button-blue.gif) top left repeat-x!important;
+	color:#fff!important;
+	cursor:pointer;
+	border-color:#459300!important;
+text-decoration: none;
+}
+.pagination a.current {
+	font-weight:normal;
+	background:#fff!important;
+	color:#459300!important;
+	border-color:#459300!important
+}
+.limit {
+	float:left;
+	margin-right:30px
+}
+.pagecounter {
+	text-align:center;
+	clear:both;
+	padding-top:10px;
+}
+.pagination div.limit {
+	float:left;
+	height:22px;
+	line-height:22px;
+	margin:0 10px
+}

@@ -1,0 +1,159 @@
+.ui-multiselect { height: 25px;
+    padding: 2px 0 2px 4px;
+    text-align: left;
+    width: 120px }
+.ui-multiselect span.ui-icon { float:right }
+.ui-multiselect-single .ui-multiselect-checkboxes input { position:absolute !important; top: auto !important; left:-9999px; }
+.ui-multiselect-single .ui-multiselect-checkboxes label { padding:5px !important }
+
+.ui-multiselect-header { margin-bottom:3px; padding:3px 0 3px 4px }
+.ui-multiselect-header ul { font-size:0.9em }
+.ui-multiselect-header ul li { float:left; padding:0 10px 0 0 }
+.ui-multiselect-header a { text-decoration:none }
+.ui-multiselect-header a:hover { text-decoration:underline }
+.ui-multiselect-header span.ui-icon { float:left }
+.ui-multiselect-header li.ui-multiselect-close { float:right; text-align:right; padding-right:0 }
+
+.ui-multiselect-menu { display:none; padding:3px; position:absolute; z-index:10000; text-align: left;background:#FFF;width: 220px !important; }
+.ui-multiselect-checkboxes { position:relative /* fixes bug in IE6/7 */; overflow-y:auto; overflow-x:hidden}
+.ui-multiselect-checkboxes label { cursor:default; display:block; border:1px solid transparent; padding:3px 1px }
+.ui-multiselect-checkboxes label input { position:relative; top:1px }
+.ui-multiselect-checkboxes li { clear:both; font-size:0.9em; padding-right:3px }
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label { text-align:center; font-weight:bold; border-bottom:1px solid }
+.ui-multiselect-checkboxes li.ui-multiselect-optgroup-label a { display:block; padding:3px; margin:1px 0; text-decoration:none }
+
+/* remove label borders in IE6 because IE6 does not support transparency */
+* html .ui-multiselect-checkboxes label { border:none }
+
+.dropdown
+{
+color: #555;
+margin: 3px 0 0 0;
+width: 143px;
+position: absolute;
+height: 17px;
+text-align:left;
+top:0;
+right:13px;
+}
+.submenu
+{
+background: #fff;
+position: absolute;
+top: 15px;
+right: 0px;
+z-index: 100000;
+width: auto;
+display: none;
+padding:5px 0;
+border-radius: 6px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+.dropdown li a
+{
+color: #555555;
+display: block;
+font-family: arial;
+font-weight: bold;
+padding: 6px 15px;
+cursor: pointer;
+text-decoration:none;
+}
+
+.dropdown li a:hover
+{
+background:rgb(47,122,179);
+color: #FFFFFF;
+text-decoration: none;
+}
+a.account 
+{
+font-size: 12px;
+line-height: 16px;
+color: #bbb;
+position: absolute;
+z-index: 110;
+display: block;
+padding: 11px 0 0 45px;
+height: 28px;
+width: 121px;
+margin: -11px 0 0 -10px;
+text-decoration: none;
+background: url(arrow.png) 116px 17px no-repeat;
+cursor:pointer;
+}
+
+.root {
+    font-size: 11px;
+    list-style: none outside none;
+    margin: 0;
+    width: 150px;
+}
+.dropdown_switch
+{
+color: #555;
+margin: 0px;
+width: 110px;
+position: absolute;
+height: 17px;
+text-align:left;
+top:85px;
+right:0px;
+}
+.submenu_switch
+{
+background: #fff;
+position: absolute;
+top: 15px;
+right: 0px;
+z-index: 100;
+width: auto;
+display: none;
+padding:5px 0;
+border-radius: 6px;
+box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+.dropdown_switch li a
+{
+color: #555555;
+display: block;
+font-family: arial;
+font-weight: bold;
+padding: 6px 15px;
+cursor: pointer;
+text-decoration:none;
+}
+
+.dropdown_switch li a:hover
+{
+background:rgb(47,122,179);
+color: #FFFFFF;
+text-decoration: none;
+}
+a.account_switch 
+{
+font-size: 12px;
+font-weight:bold;
+line-height: 16px;
+color: #333;
+position: absolute;
+z-index: 110;
+display: block;
+padding: 11px 0 0 0;
+height: 28px;
+width: 115px;
+margin: -11px 0 0 -10px;
+text-decoration: none;
+background: url(arrow_switch.gif) 60px 17px no-repeat;
+cursor:pointer;
+border: none;	
+}
+
+.root_switch
+{
+list-style:none;
+margin:0px;
+padding:11px 0 0;
+font-size: 11px;
+border-top:1px solid #dedede;
+}

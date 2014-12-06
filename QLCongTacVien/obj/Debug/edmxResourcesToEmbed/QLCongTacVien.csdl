@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLCongTacVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblAccount">
+    <Key>
+      <PropertyRef Name="MaAccount" />
+    </Key>
+    <Property Name="MaAccount" Type="Int64" Nullable="false" />
+    <Property Name="TenAccount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LoaiAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AccountManager" Type="Int64" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="NgayUpdate" Type="DateTime" Precision="3" />
+    <Property Name="UserTao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TrangThai" Type="Int32" />
+    <NavigationProperty Name="tblAccount1" Relationship="Self.FK_tblAccount_tblAccount" FromRole="tblAccount" ToRole="tblAccount1" />
+    <NavigationProperty Name="tblAccount2" Relationship="Self.FK_tblAccount_tblAccount" FromRole="tblAccount1" ToRole="tblAccount" />
+    <NavigationProperty Name="tblNhoms" Relationship="Self.tblAccount_Nhom" FromRole="tblAccount" ToRole="tblNhom" />
+    <NavigationProperty Name="tblUsers" Relationship="Self.tblAccount_User" FromRole="tblAccount" ToRole="tblUser" />
+    <NavigationProperty Name="tblPhongBans" Relationship="Self.tblPhongBan_Account" FromRole="tblAccount" ToRole="tblPhongBan" />
+  </EntityType>
+  <EntityType Name="tblKhachHang">
+    <Key>
+      <PropertyRef Name="MaKhachHang" />
+    </Key>
+    <Property Name="MaKhachHang" Type="Int64" Nullable="false" />
+    <Property Name="TenKhachHang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SoDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="GhiChu1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GhiChu2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GhiChu3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GhiChu4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GiaTri" Type="Double" />
+    <Property Name="TrangThai1" Type="Int32" />
+    <Property Name="TrangThai2" Type="Int32" />
+    <Property Name="TrangThai3" Type="Int32" />
+    <Property Name="TrangThai4" Type="Int32" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="NgayUpdate" Type="DateTime" Precision="3" />
+    <Property Name="UserTao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblLichSus" Relationship="Self.tblKhachHang_LichSu" FromRole="tblKhachHang" ToRole="tblLichSu" />
+    <NavigationProperty Name="tblNhoms" Relationship="Self.tblNhom_KhachHang" FromRole="tblKhachHang" ToRole="tblNhom" />
+  </EntityType>
+  <EntityType Name="tblLichSu">
+    <Key>
+      <PropertyRef Name="MaLichSu" />
+    </Key>
+    <Property Name="MaLichSu" Type="Int64" Nullable="false" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GiaTri" Type="Double" />
+    <Property Name="GhiChu1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GhiChu2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GhiChu3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GhiChu4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="NgayUpdate" Type="DateTime" Precision="3" />
+    <Property Name="UserTao" Type="DateTime" Precision="3" />
+    <Property Name="UserUpdate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblKhachHangs" Relationship="Self.tblKhachHang_LichSu" FromRole="tblLichSu" ToRole="tblKhachHang" />
+  </EntityType>
+  <EntityType Name="tblNhom">
+    <Key>
+      <PropertyRef Name="MaNhom" />
+    </Key>
+    <Property Name="MaNhom" Type="Int64" Nullable="false" />
+    <Property Name="TenNhom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MoTaoNhom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="NgayUpdate" Type="DateTime" Precision="3" />
+    <Property Name="UserTao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TrangThai" Type="Int32" />
+    <NavigationProperty Name="tblAccounts" Relationship="Self.tblAccount_Nhom" FromRole="tblNhom" ToRole="tblAccount" />
+    <NavigationProperty Name="tblKhachHangs" Relationship="Self.tblNhom_KhachHang" FromRole="tblNhom" ToRole="tblKhachHang" />
+  </EntityType>
+  <EntityType Name="tblPhongBan">
+    <Key>
+      <PropertyRef Name="MaPhongBan" />
+    </Key>
+    <Property Name="MaPhongBan" Type="Int64" Nullable="false" />
+    <Property Name="TenPhongBan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MoTaPhongBan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GhiChuPhongBan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="NgayUpdate" Type="DateTime" Precision="3" />
+    <Property Name="UserTao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TrangThai" Type="Int32" />
+    <NavigationProperty Name="tblAccounts" Relationship="Self.tblPhongBan_Account" FromRole="tblPhongBan" ToRole="tblAccount" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="MaUser" />
+    </Key>
+    <Property Name="MaUser" Type="Int64" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="NgayUpdate" Type="DateTime" Precision="3" />
+    <Property Name="UserTao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserUpdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TrangThai" Type="Int32" />
+    <NavigationProperty Name="tblAccounts" Relationship="Self.tblAccount_User" FromRole="tblUser" ToRole="tblAccount" />
+  </EntityType>
+  <Association Name="FK_tblAccount_tblAccount">
+    <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="0..1" />
+    <End Role="tblAccount1" Type="Self.tblAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAccount">
+        <PropertyRef Name="MaAccount" />
+      </Principal>
+      <Dependent Role="tblAccount1">
+        <PropertyRef Name="AccountManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblAccount_Nhom">
+    <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="*" />
+    <End Role="tblNhom" Type="Self.tblNhom" Multiplicity="*" />
+  </Association>
+  <Association Name="tblAccount_User">
+    <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="*" />
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="*" />
+  </Association>
+  <Association Name="tblKhachHang_LichSu">
+    <End Role="tblKhachHang" Type="Self.tblKhachHang" Multiplicity="*" />
+    <End Role="tblLichSu" Type="Self.tblLichSu" Multiplicity="*" />
+  </Association>
+  <Association Name="tblNhom_KhachHang">
+    <End Role="tblKhachHang" Type="Self.tblKhachHang" Multiplicity="*" />
+    <End Role="tblNhom" Type="Self.tblNhom" Multiplicity="*" />
+  </Association>
+  <Association Name="tblPhongBan_Account">
+    <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="*" />
+    <End Role="tblPhongBan" Type="Self.tblPhongBan" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="QLCongTacVienEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblAccounts" EntityType="Self.tblAccount" />
+    <EntitySet Name="tblKhachHangs" EntityType="Self.tblKhachHang" />
+    <EntitySet Name="tblLichSus" EntityType="Self.tblLichSu" />
+    <EntitySet Name="tblNhoms" EntityType="Self.tblNhom" />
+    <EntitySet Name="tblPhongBans" EntityType="Self.tblPhongBan" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <AssociationSet Name="FK_tblAccount_tblAccount" Association="Self.FK_tblAccount_tblAccount">
+      <End Role="tblAccount" EntitySet="tblAccounts" />
+      <End Role="tblAccount1" EntitySet="tblAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="tblAccount_Nhom" Association="Self.tblAccount_Nhom">
+      <End Role="tblAccount" EntitySet="tblAccounts" />
+      <End Role="tblNhom" EntitySet="tblNhoms" />
+    </AssociationSet>
+    <AssociationSet Name="tblAccount_User" Association="Self.tblAccount_User">
+      <End Role="tblAccount" EntitySet="tblAccounts" />
+      <End Role="tblUser" EntitySet="tblUsers" />
+    </AssociationSet>
+    <AssociationSet Name="tblKhachHang_LichSu" Association="Self.tblKhachHang_LichSu">
+      <End Role="tblKhachHang" EntitySet="tblKhachHangs" />
+      <End Role="tblLichSu" EntitySet="tblLichSus" />
+    </AssociationSet>
+    <AssociationSet Name="tblNhom_KhachHang" Association="Self.tblNhom_KhachHang">
+      <End Role="tblKhachHang" EntitySet="tblKhachHangs" />
+      <End Role="tblNhom" EntitySet="tblNhoms" />
+    </AssociationSet>
+    <AssociationSet Name="tblPhongBan_Account" Association="Self.tblPhongBan_Account">
+      <End Role="tblAccount" EntitySet="tblAccounts" />
+      <End Role="tblPhongBan" EntitySet="tblPhongBans" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QLCongTacVienModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QLCongTacVienModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,74 @@
+﻿@model QLCongTacVien.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    AjaxOptions ajaxLogin = new AjaxOptions
+    {
+        UpdateTargetId = "msgErrors",
+        LoadingElementDuration = 20000
+    };
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+
+<div class="container">
+    <div class="span-24 last header">
+        
+        <div class="span-12 last user">
+            &nbsp;
+        </div>
+    </div>
+    <div class="span-24 last defaultContent">
+        <div class="span-12">
+        	
+         
+            <div class="span-9">
+
+                @using (Ajax.BeginForm("Login", "Account", FormMethod.Post, ajaxLogin, new { @id = "frmCustomerSearch", @encType = "multipart/form-data" }))
+                {
+                    
+                    <fieldset class="loginBox">
+	                        <div style="margin-bottom:50px" class="span-12">
+					            <img src="@Url.Content("~/Content/images/logo.png")">
+					        </div>
+	                        <div class="padding-lr">
+	                        	Đăng Nhập Hệ Thống Khách Hàng 
+                                 @Html.TextBoxFor(m => m.UserName, new {@style="padding:10px;border-radius:0",@placeholder="User or someone@example.com",@class="text" })
+                                <br>
+	                              @Html.ValidationMessageFor(model => model.UserName)
+	                            <br>
+                                  @Html.PasswordFor(m => m.Password, new {@style="padding:10px;border-radius:0",@placeholder="Mật khẩu",@class="text" })
+                                <br>
+	                               @Html.ValidationMessageFor(model => model.Password)
+	                            <br>
+	                          
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                              
+	                            
+	                             <div style="color:red;" id="msgErrors" class="LoginFormErrors">@Html.ValidationSummary(true)</div>
+								<br>
+                               
+	                            <input type="submit" class="loginButton" value="Sign in" id="btnLogin" name="submit">
+	                            <br><br>
+	                            <span class="forgot"><a style="font-weight:normal" href="forgotpass">Can't access your account?</a></span>
+	                            <br><br>
+	                        </div>
+	                        <br>
+	                        <div class="span-24 last footer padding-all-small">
+						        <div class="span-12 last text-right">
+						            <div class="padding-tb-small">&copy;2014 Hệ Thống Quản Lý Khách Hàng.</div>
+						        </div>
+					    	</div>
+                    </fieldset>
+                }
+
+
+            </div>
+            <div class="span-1">&nbsp;</div>
+        </div>
+
+    </div>
+    
+</div>

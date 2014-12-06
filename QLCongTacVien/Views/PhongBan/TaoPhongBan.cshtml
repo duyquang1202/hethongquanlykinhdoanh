@@ -1,0 +1,144 @@
+﻿@model QLCongTacVien.Models.PhongBanModel
+@{
+   
+    AjaxOptions ajaxTaoPhongBan = new AjaxOptions
+    {
+       
+        LoadingElementDuration = 20000,
+        OnBegin = "openBUI('resultform')",
+        OnSuccess = "editPrivilegeLevelForFileSuccess"
+    };
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    function editPrivilegeLevelForFileSuccess(objResult) {
+        if (objResult.result) {
+            $('#result_error').html(objResult.Data);
+        } else {
+            $('#content').html(objResult);
+        }
+        closeBUI('resultform')
+   
+}
+</script>
+		        <div class="holder ox3-app enterprise-view" style="height: auto;">
+            <div class="ox3-widget-page-accounts ox3-widget-page" id="PageAccounts" style="display: block;">
+           		
+              <div style="clear:both;"></div> 
+              <div id="loadhead">
+<style>
+	.chosen-container-multi{
+	width:392px !important;	
+	}
+	.button{
+		background-color: #B82026;
+	    color: #FFFFFF;
+	    cursor: pointer;
+	    height: 25px;
+	    padding: 5px 15px;
+	}
+    .sumitbutton
+    {
+       background-color: #B82026;
+	    color: #FFFFFF;
+	    cursor: pointer;
+	    height: 25px;
+        padding-bottom:5px;
+	    padding: 5px 15px;
+         border: 0 none;
+    }
+    .sumitbutton:hover
+    {
+        color: #FFFFFF;
+    }
+	.button:hover{
+		 color: #FFFFFF;
+	}
+	.saveUpdateButton{
+		float:right;
+	}
+	.cancelButton{
+		
+	float:left;
+	}
+</style>
+
+<div id="headwrap">
+	<div id="breadcrumb">
+		<ul class="bcList ox3-widget-breadcrumb-accounts" id="BreadcrumbAccounts">
+			<li>
+				<div class="bcItem" id="subMenu">
+                    @Ajax.ActionLink("Phòng Ban","DanhSachPhongBan", FormMethod.Get,ajaxTaoPhongBan, new {@class="bcLink",@var="label",@rel="tab" })
+					
+					<div class="bcButton"></div>
+				</div>
+			</li>
+			<div class="clear"></div>
+		</ul>
+	</div>
+        
+
+	<div class="head head-accounts">
+		<h1>Create Account</h1>
+		<div class="clear">&nbsp;</div>
+	</div>
+</div>
+
+</div>	
+              <div style="clear:both;"></div> 
+              	<div id="resultform"><div class="mainContent">
+	<div class="panel" id="add-site-panel">
+		<div id="result_error">@Html.ValidationSummary(true)</div>
+		<div style="clear:both;"></div>
+		<div>
+            @using (Ajax.BeginForm("TaoPhongBan", "PhongBan", FormMethod.Post, ajaxTaoPhongBan, new {@style="padding:10px;" , @class="ox3-widget-form ox3-widget-forms-site", @encType = "multipart/form-data" }))
+            {
+		 	
+			<!--  name -->
+		    <span class="ox3-widget-input text2 required" id="name" style="">                
+                 @Html.LabelFor(m=>m.TenPhongBan,new{@class="label",@var="label"},"<span class='star'>*</span>")
+                @Html.TextBoxFor(m => m.TenPhongBan, new {@class="input",@var="input" })                
+			     <br>
+                 @Html.ValidationMessageFor(model => model.TenPhongBan, null, new {@class="error_input",@style="margin-left: 270px;"})
+                
+			</span>		
+	     		       
+			<!-- NOTE -->
+			 <span class="ox3-widget-input textarea" id="account_notes_text" style="">
+                  @Html.LabelFor(m=>m.MoTaPhongBan,new{@class="label",@var="label"})                 
+                 @Html.TextAreaFor(m=>m.MoTaPhongBan,new {@class="textarea",@var="input"})
+				 @Html.ValidationMessageFor(model => model.MoTaPhongBan, null, new {@class="error_input",@style="margin-left: 270px;"})
+			</span>
+
+             <span class="ox3-widget-input textarea" id="account_notes_text" style="">
+                  @Html.LabelFor(m=>m.GhiChuPhongBan,new{@class="label",@var="label"})                 
+                 @Html.TextAreaFor(m=>m.GhiChuPhongBan,new {@class="textarea",@var="input"})
+				  @Html.ValidationMessageFor(model => model.GhiChuPhongBan, null, new {@class="error_input",@style="margin-left: 270px;"})
+			</span>
+           <!-- Button -->
+			<div class="ox3-widget buttons" id="Widget">
+								<div class="saveUpdateButton" id="multi_submit_btn" href="#">	  
+                                    <a href="javascript:void(0);" onclick="$(this).parents('form').submit();" class="button">Lưu</a>      
+				                </div>
+								<div class="cancelButton">
+                                    @Ajax.ActionLink("Hủy","DanhSachPhongBan",new { @sField = ViewBag.sField, @sSort = ViewBag.sSort, @page = ViewBag.page, @pagesize =ViewBag.pagesize ,@sTenPhongBan=ViewBag.sTenPhongBan },ajaxTaoPhongBan, new {@class="button",@var="label",@id="cancel_btn" })
+					
+				                </div>
+			</div>
+            }
+			
+		
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+	<div style="clear:both;">&nbsp;</div>
+</div>
+<div style="clear:both;"></div></div>	
+               <div style="clear:both;"></div> 
+            </div>
+            
+        </div>
+        <div class="clear">&nbsp;</div>
+        <div style="display: none; height: 100%; width: 100%; text-align: left; overflow: auto;" id="divEditAccount"></div>
+         

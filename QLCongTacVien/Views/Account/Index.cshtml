@@ -1,0 +1,222 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+      <div class="holder ox3-app enterprise-view" style="height: auto;">
+            <div class="ox3-widget-page-accounts ox3-widget-page" id="PageAccounts" style="display: block;">
+           		
+              <div style="clear:both;"></div> 
+              <div id="loadhead"><div id="headwrap">
+	<div id="breadcrumb">
+		<ul class="bcList ox3-widget-breadcrumb-accounts" id="BreadcrumbAccounts">
+			<li>
+				<div class="bcItem" id="subMenu">
+					<a onclick="getListAccount(1,10,'name','asc','',0,1);" href="javascript:void(0);" rel="tab" class="bcLink"><span class="bcLabel">Account</span></a>
+					<div class="bcButton"></div>
+				</div>
+			</li>
+			<div class="clear"></div>
+		</ul>
+	</div>
+
+	<div class="head head-accounts">		
+			<h1></h1>
+			<div class="clear">&nbsp;</div>
+	</div>
+</div>
+<div id="ribbon_nav" class="ox3-widget-nav-ribbon_tabs">
+		<a href="javascript:void(0);" id="publishers" class="ox3-widget-button active first">
+		<div class="center">
+			<div var="icon"></div>
+			<div var="label container" class="label container">Manager Accounts</div>
+		</div>
+	</a>
+		
+			<a href="javascript:void(0);" onclick="getListUser(1,10,'user','asc','',1,1)" id="publishers" class="ox3-widget-button inactive">
+		<div class="center">
+			<div var="icon"></div>
+			<div var="label container" class="label container">Users</div>
+		</div>
+	</a>
+			<a href="javascript:void(0);" onclick="getPayInfo(1,10,'name','asc','',1,1,1)" id="publishers" class="ox3-widget-button inactive">
+		<div class="center">
+			<div var="icon"></div>
+			<div var="label container" class="label container">Payment Info</div>
+		</div>
+	</a>
+		</div></div>	
+              <div style="clear:both;"></div> 
+              	<div id="resultform">
+				<form name="frmSearch" style="float:none;" id="frmSearch">
+				<div id="result" style="position: relative; min-height: 0px;">					   <div style="clear:both;"></div> 
+					    
+					    <input type="hidden" value="1" id="hidiAccountId" name="hidiAccountId">						
+						<input type="hidden" value="1" id="hidiPage" name="hidiPage">
+						<input type="hidden" value="10" id="hidiPageSize" name="hidiPageSize">
+						<input type="hidden" value="name" id="hidsField" name="hidsField">
+						<input type="hidden" value="asc" id="hidsSort" name="hidsSort">
+						<input type="hidden" value="1" id="hidiInactive" name="hidiInactive">
+                    	<div class="ox3-widget-table_list-accounts ox3-widget-table_list" id="accounts">
+                    
+                    	<!-- start action -->
+                    	
+						 <div class="controls" var="controls">
+							
+							<div class="wrap-a">
+																										<div class="button">
+										<a onclick="formEditAccount(1, 10, 'name', 'asc','',0,0,1);" href="javascript:void(0);" class="bMain">Create Account</a>
+									</div>	
+										
+																		<div class="ox-modal-wrap bulk-action" style="position: relative; float: left;">
+										<div class="button bulk-action">
+											<a onclick="deleteAccount(1, 10, 'name', 'asc','',1,1);" href="javascript:void(0);" class="actions bMain">Delete</a>
+										</div>
+									</div>
+																									<div class="ox-modal-wrap bulk-action" style="position: relative; float: left;">
+									<div class="button bulk-action">
+										<a onclick="callInactive(1,10,'name','asc','',0,0);" href="javascript:void(0);" class="actions bMain">Show Inactive</a>
+									</div>
+						
+								</div>
+								
+							</div>
+							<div class="wrap-b">
+								<a class="toggle-filter initTooltip" title="Filter Table"></a>
+								<div class="search-box">
+									<div class="sLeft"></div>
+									<div class="sMain">
+										<input type="text" id="account_name" name="account_name" value="">
+									</div>
+									<div class="sRight"></div>
+								</div>
+							</div>
+							
+						</div>
+						
+						<!-- end action -->    
+					     
+                    	<div style="clear:both;"></div>
+                    	<!-- start list account -->
+                    	<div style="clear:both;"></div>
+                    				
+                
+<div id="resultsearch">
+
+<div>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="list accounts">
+	<thead var="header">
+		<tr>
+			<th class="id first"><input type="checkbox" onclick="checkAll(this);" id="chkSelectAll"></th>
+			<th onclick="getListAccount(1,10,'name','desc','',1,1)" class="name sortable sorted-asc"><span class="text">Account Name</span></th>
+			<th onclick="getListAccount(1,10,'status','desc','',1,1)" class="status sortable sorted-"><span class="text">Status</span></th>
+			<th onclick="getListAccount(1,10,'type','desc','',1,1)" class="actions sortable sorted-"><span class="text">Account Type</span>
+			</th>
+			<th class="parent_name"><span class="text">Managing Account</span></th>
+			<th class="actions"><span class="text">Actions</span></th>
+		</tr>
+	</thead>
+	<tbody class="container" var="container">	
+																				<tr id="ox--account--0" class="even">
+					<td class="id"><input type="checkbox" name="check_id" id="check_id0" key="namdinh-testDSP-DUNG XOA" value="1389838940"></td>
+					<td class="name initTooltip">
+															<a onclick="getListPublisherUser(1,10,'user','asc','',1389838940,1,1)" href="javascript:void(0);">namdinh-testDSP-DUNG XOA</a>
+															</td>
+					<td class="status hasTooltip" title="">
+						<span class="active">
+																								<a onclick="activeAccount(1, 10, 'name', 'asc','',0,1389838940,1,1);" href="javascript:void(0)"><span style="color:#0863a0;">Active</span></a>
+																					</span>
+					</td>
+					<td class="type">Publisher</td>
+					<td class="parent_name">Admin Manager</td>
+					<td class="actions">
+													<a title="Edit" class="action initTooltip edit" onclick="formEditAccount(1, 10, 'name', 'asc','',1,1389838940,1);" href="javascript:void(0);"></a>
+											</td>
+				</tr>
+																			<tr id="ox--account--1">
+					<td class="id"><input type="checkbox" name="check_id" id="check_id1" key="publishertest1" value="1391999304"></td>
+					<td class="name initTooltip">
+															<a onclick="getListPublisherUser(1,10,'user','asc','',1391999304,1,1)" href="javascript:void(0);">publishertest1</a>
+															</td>
+					<td class="status hasTooltip" title="">
+						<span class="active">
+																								<a onclick="activeAccount(1, 10, 'name', 'asc','',0,1391999304,1,1);" href="javascript:void(0)"><span style="color:#0863a0;">Active</span></a>
+																					</span>
+					</td>
+					<td class="type">Publisher</td>
+					<td class="parent_name">networktest</td>
+					<td class="actions">
+													<a title="Edit" class="action initTooltip edit" onclick="formEditAccount(1, 10, 'name', 'asc','',1,1391999304,1);" href="javascript:void(0);"></a>
+											</td>
+				</tr>
+																			<tr id="ox--account--2" class="even">
+					<td class="id"><input type="checkbox" name="check_id" id="check_id2" key="TestMe Network" value="1392194069"></td>
+					<td class="name initTooltip">
+										<a onclick="getListAdnetworkAccount(1,10,'name','asc','',1392194069,1,1)" href="javascript:void(0);">TestMe Network</a>
+										</td>
+					<td class="status hasTooltip" title="">
+						<span class="active">
+																								<a onclick="activeAccount(1, 10, 'name', 'asc','',0,1392194069,1,1);" href="javascript:void(0)"><span style="color:#0863a0;">Active</span></a>
+																					</span>
+					</td>
+					<td class="type">Network</td>
+					<td class="parent_name">Admin Manager</td>
+					<td class="actions">
+													<a title="Edit" class="action initTooltip edit" onclick="formEditAccount(1, 10, 'name', 'asc','',1,1392194069,1);" href="javascript:void(0);"></a>
+											</td>
+				</tr>
+																			<tr id="ox--account--3">
+					<td class="id"><input type="checkbox" name="check_id" id="check_id3" key="TestMe Publisher" value="1392194286"></td>
+					<td class="name initTooltip">
+															<a onclick="getListPublisherUser(1,10,'user','asc','',1392194286,1,1)" href="javascript:void(0);">TestMe Publisher</a>
+															</td>
+					<td class="status hasTooltip" title="">
+						<span class="active">
+																								<a onclick="activeAccount(1, 10, 'name', 'asc','',0,1392194286,1,1);" href="javascript:void(0)"><span style="color:#0863a0;">Active</span></a>
+																					</span>
+					</td>
+					<td class="type">Publisher</td>
+					<td class="parent_name">TestMe Network</td>
+					<td class="actions">
+													<a title="Edit" class="action initTooltip edit" onclick="formEditAccount(1, 10, 'name', 'asc','',1,1392194286,1);" href="javascript:void(0);"></a>
+											</td>
+				</tr>
+										</tbody>
+	<tfoot var="footer"></tfoot>
+</table>
+</div>
+<div style="clear:both;"></div>
+<div class="paginateInfo" id="Pagination">
+  
+<div style="margin-bottom: 5px;margin-top: 5px">
+Display: <select onchange="getListAccount(1,this.value,'name','asc','',0,1);" style="width:50px;" name="optPageSizes" id="optPageSizes">
+		<option value="1">1</option>
+    	<option value="5">5</option>
+    	<option selected="selected" value="10">10</option>
+    	<option value="15">15</option>
+    	<option value="20">20</option>
+    	<option value="30">30</option>
+    	<option value="50">50</option>
+    	<option value="100">100</option>
+    </select>
+<span>In 1 Page. Displaying 1 - 4 of 4</span>      
+</div>
+</div>   
+
+<div style="clear:both;"></div>
+
+</div>
+<div style="clear:both;"></div>
+</div>
+</div>	
+                <div style="clear:both;"></div>
+                </form>
+				</div>	
+               <div style="clear:both;"></div> 
+            </div>
+            
+        </div>
+        <div class="clear">&nbsp;</div>
+        <div style="display: none; height: 100%; width: 100%; text-align: left; overflow: auto;" id="divEditAccount"></div>
+

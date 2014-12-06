@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLCongTacVienModelStoreContainer" CdmEntityContainer="QLCongTacVienEntities">
+    <EntitySetMapping Name="tblAccounts">
+      <EntityTypeMapping TypeName="QLCongTacVienModel.tblAccount">
+        <MappingFragment StoreEntitySet="tblAccount">
+          <ScalarProperty Name="MaAccount" ColumnName="MaAccount" />
+          <ScalarProperty Name="TenAccount" ColumnName="TenAccount" />
+          <ScalarProperty Name="LoaiAccount" ColumnName="LoaiAccount" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="AccountManager" ColumnName="AccountManager" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="NgayUpdate" ColumnName="NgayUpdate" />
+          <ScalarProperty Name="UserTao" ColumnName="UserTao" />
+          <ScalarProperty Name="UserUpdate" ColumnName="UserUpdate" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblKhachHangs">
+      <EntityTypeMapping TypeName="QLCongTacVienModel.tblKhachHang">
+        <MappingFragment StoreEntitySet="tblKhachHang">
+          <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+          <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+          <ScalarProperty Name="SoDT" ColumnName="SoDT" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="GhiChu1" ColumnName="GhiChu1" />
+          <ScalarProperty Name="GhiChu2" ColumnName="GhiChu2" />
+          <ScalarProperty Name="GhiChu3" ColumnName="GhiChu3" />
+          <ScalarProperty Name="GhiChu4" ColumnName="GhiChu4" />
+          <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+          <ScalarProperty Name="TrangThai1" ColumnName="TrangThai1" />
+          <ScalarProperty Name="TrangThai2" ColumnName="TrangThai2" />
+          <ScalarProperty Name="TrangThai3" ColumnName="TrangThai3" />
+          <ScalarProperty Name="TrangThai4" ColumnName="TrangThai4" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="NgayUpdate" ColumnName="NgayUpdate" />
+          <ScalarProperty Name="UserTao" ColumnName="UserTao" />
+          <ScalarProperty Name="UserUpdate" ColumnName="UserUpdate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLichSus">
+      <EntityTypeMapping TypeName="QLCongTacVienModel.tblLichSu">
+        <MappingFragment StoreEntitySet="tblLichSu">
+          <ScalarProperty Name="MaLichSu" ColumnName="MaLichSu" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+          <ScalarProperty Name="GhiChu1" ColumnName="GhiChu1" />
+          <ScalarProperty Name="GhiChu2" ColumnName="GhiChu2" />
+          <ScalarProperty Name="GhiChu3" ColumnName="GhiChu3" />
+          <ScalarProperty Name="GhiChu4" ColumnName="GhiChu4" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="NgayUpdate" ColumnName="NgayUpdate" />
+          <ScalarProperty Name="UserTao" ColumnName="UserTao" />
+          <ScalarProperty Name="UserUpdate" ColumnName="UserUpdate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblNhoms">
+      <EntityTypeMapping TypeName="QLCongTacVienModel.tblNhom">
+        <MappingFragment StoreEntitySet="tblNhom">
+          <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
+          <ScalarProperty Name="TenNhom" ColumnName="TenNhom" />
+          <ScalarProperty Name="MoTaoNhom" ColumnName="MoTaoNhom" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="NgayUpdate" ColumnName="NgayUpdate" />
+          <ScalarProperty Name="UserTao" ColumnName="UserTao" />
+          <ScalarProperty Name="UserUpdate" ColumnName="UserUpdate" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPhongBans">
+      <EntityTypeMapping TypeName="QLCongTacVienModel.tblPhongBan">
+        <MappingFragment StoreEntitySet="tblPhongBan">
+          <ScalarProperty Name="MaPhongBan" ColumnName="MaPhongBan" />
+          <ScalarProperty Name="TenPhongBan" ColumnName="TenPhongBan" />
+          <ScalarProperty Name="MoTaPhongBan" ColumnName="MoTaPhongBan" />
+          <ScalarProperty Name="GhiChuPhongBan" ColumnName="GhiChuPhongBan" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="NgayUpdate" ColumnName="NgayUpdate" />
+          <ScalarProperty Name="UserTao" ColumnName="UserTao" />
+          <ScalarProperty Name="UserUpdate" ColumnName="UserUpdate" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="QLCongTacVienModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="MaUser" ColumnName="MaUser" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="NgayUpdate" ColumnName="NgayUpdate" />
+          <ScalarProperty Name="UserTao" ColumnName="UserTao" />
+          <ScalarProperty Name="UserUpdate" ColumnName="UserUpdate" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="tblAccount_Nhom" TypeName="QLCongTacVienModel.tblAccount_Nhom" StoreEntitySet="tblAccount_Nhom">
+      <EndProperty Name="tblAccount">
+        <ScalarProperty Name="MaAccount" ColumnName="MaAccount" />
+      </EndProperty>
+      <EndProperty Name="tblNhom">
+        <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="tblAccount_User" TypeName="QLCongTacVienModel.tblAccount_User" StoreEntitySet="tblAccount_User">
+      <EndProperty Name="tblAccount">
+        <ScalarProperty Name="MaAccount" ColumnName="MaAccount" />
+      </EndProperty>
+      <EndProperty Name="tblUser">
+        <ScalarProperty Name="MaUser" ColumnName="MaUser" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="tblKhachHang_LichSu" TypeName="QLCongTacVienModel.tblKhachHang_LichSu" StoreEntitySet="tblKhachHang_LichSu">
+      <EndProperty Name="tblKhachHang">
+        <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+      </EndProperty>
+      <EndProperty Name="tblLichSu">
+        <ScalarProperty Name="MaLichSu" ColumnName="MaLichSu" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="tblNhom_KhachHang" TypeName="QLCongTacVienModel.tblNhom_KhachHang" StoreEntitySet="tblNhom_KhachHang">
+      <EndProperty Name="tblKhachHang">
+        <ScalarProperty Name="MaKhachHang" ColumnName="MaKhachHang" />
+      </EndProperty>
+      <EndProperty Name="tblNhom">
+        <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="tblPhongBan_Account" TypeName="QLCongTacVienModel.tblPhongBan_Account" StoreEntitySet="tblPhongBan_Account">
+      <EndProperty Name="tblAccount">
+        <ScalarProperty Name="MaAccount" ColumnName="MaAccount" />
+      </EndProperty>
+      <EndProperty Name="tblPhongBan">
+        <ScalarProperty Name="MaPhongBan" ColumnName="MaPhongBan" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="QLCongTacVienModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="QLCongTacVienModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="QLCongTacVienModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="QLCongTacVienModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLCongTacVienModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="QLCongTacVienModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLCongTacVienModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="QLCongTacVienModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="QLCongTacVienModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
