@@ -109,14 +109,14 @@
 		 	@Html.HiddenFor(m => m.MaUser);
 			<!--  name -->
 		    <span class="ox3-widget-input text2 required" id="name" style="">                
-                 @Html.LabelFor(m => m.UserName, new { @class = "label", @var = "label" }, "<span class='star'>*</span>")
+                 @Html.LabelFor(m => m.UserName, new { @class = "label", @var = "label" })
                 @Html.TextBoxFor(m => m.UserName, new { @class = "input", @var = "input" })                
 			     <br>
                  @Html.ValidationMessageFor(model => model.UserName, null, new { @class = "error_input", @style = "margin-left: 270px;" })
                 
 			</span>		
             <span class="ox3-widget-input text2 required" id="name" style="">                
-                 @Html.LabelFor(m => m.Password, new { @class = "label", @var = "label" }, "<span class='star'>*</span>")
+                 @Html.LabelFor(m => m.Password, new { @class = "label", @var = "label" })
                 @Html.PasswordFor(m => m.Password,new { @class = "input", @var = "input" });
                           
 			     <br>
@@ -124,7 +124,7 @@
                 
 			</span>	
             <span class="ox3-widget-input text2 required" id="name" style="">                
-                 @Html.LabelFor(m => m.ConfirmPassword, new { @class = "label", @var = "label" }, "<span class='star'>*</span>")
+                 @Html.LabelFor(m => m.ConfirmPassword, new { @class = "label", @var = "label" })
                 @Html.PasswordFor(m => m.ConfirmPassword,new { @class = "input", @var = "input" });
                           
 			     <br>
@@ -132,7 +132,7 @@
                 
 			</span>	
             <span class="ox3-widget-input text2 required" id="name" style="">                
-                 @Html.LabelFor(m => m.Email, new { @class = "label", @var = "label" }, "<span class='star'>*</span>")
+                 @Html.LabelFor(m => m.Email, new { @class = "label", @var = "label" })
                 @Html.TextBoxFor(m => m.Email,new { @class = "input", @var = "input" });
                           
 			     <br>
@@ -140,7 +140,7 @@
                 
 			</span>	 
             <span class="ox3-widget-input text2 required" id="name" style="">                
-                 @Html.LabelFor(m => m.FullName, new { @class = "label", @var = "label" }, "<span class='star'>*</span>")
+                 @Html.LabelFor(m => m.FullName, new { @class = "label", @var = "label" })
                 @Html.TextBoxFor(m => m.FullName,new { @class = "input", @var = "input" });
                           
 			     <br>
@@ -148,13 +148,13 @@
                 
 			</span>	       
               <span class="ox3-widget-input text2 required" id="name" style="">                
-                     @Html.LabelFor(m => m.DienThoai, new { @class = "label", @var = "label" }, "<span class='star'>*</span>")
+                     @Html.LabelFor(m => m.DienThoai, new { @class = "label", @var = "label" })
                     @Html.TextBoxFor(m => m.DienThoai,new { @class = "input", @var = "input" });
 			         <br>
                      @Html.ValidationMessageFor(model => model.DienThoai, null, new { @class = "error_input", @style = "margin-left: 270px;" })
 			    </span>	
                 <span class="ox3-widget-input text2 required" id="name" style="">                
-                     @Html.LabelFor(m => m.DiaChi, new { @class = "label", @var = "label" }, "<span class='star'>*</span>")
+                     @Html.LabelFor(m => m.DiaChi, new { @class = "label", @var = "label" })
                     @Html.TextBoxFor(m => m.DiaChi,new { @class = "input", @var = "input" });
 			         <br>
                      @Html.ValidationMessageFor(model => model.DiaChi, null, new { @class = "error_input", @style = "margin-left: 270px;" })

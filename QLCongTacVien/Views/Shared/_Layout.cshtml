@@ -41,7 +41,7 @@
         }
 
         $(document).ready(function () {
-            initPage();
+          
             $(".userMenu").click(function () {
                 var X = $(this).attr('id');
                 if (X == 1) {
@@ -81,20 +81,6 @@
                     }
                 }
             }
-        }
-
-        function initPage() {
-            /*$('#divAnnouncement').scrollToFixed({
-            marginTop: 0
-            });*/
-            $('#btn-close-message').click(function () {
-                $('#divAnnouncement').hide();
-                var sId = $(this).attr("data");
-                var cookie_abdMemberNotice = $.cookie("abdMemberNotice");
-                cookie_abdMemberNotice = sId + cookie_abdMemberNotice;
-                $.cookie("abdMemberNotice", cookie_abdMemberNotice, { path: '/' });
-                console.log("abdMemberNotice: " + cookie_abdMemberNotice);
-            });
         }
 
         function openBUI(sId) {

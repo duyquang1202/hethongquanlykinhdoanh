@@ -101,7 +101,7 @@
 		 	@Html.HiddenFor(m => m.MaAccount)
 			<!--  name -->
 		    <span class="ox3-widget-input text2 required" id="name" style="">                
-                 @Html.LabelFor(m => m.TenAccount, new { @class = "label", @var = "label" }, "<span class='star'>*</span>")
+                 @Html.LabelFor(m => m.TenAccount, new { @class = "label", @var = "label" })
                 @Html.TextBoxFor(m => m.TenAccount, new { @class = "input", @var = "input" })                
 			     <br>
                  @Html.ValidationMessageFor(model => model.TenAccount, null, new { @class = "error_input", @style = "margin-left: 270px;" })
