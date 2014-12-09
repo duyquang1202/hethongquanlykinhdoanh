@@ -138,14 +138,14 @@
 		 	
 			<!--  name -->
 		    <span class="ox3-widget-input text2 required" id="name" style="">                
-                 @Html.LabelFor(m => m.TenAccount, new { @class = "label", @var = "label" }, "<span class='star'>*</span>")
+                 @Html.LabelFor(m => m.TenAccount, new { @class = "label", @var = "label" })
                 @Html.TextBoxFor(m => m.TenAccount, new { @class = "input", @var = "input" })                
 			     <br>
                  @Html.ValidationMessageFor(model => model.TenAccount, null, new { @class = "error_input", @style = "margin-left: 270px;" })
                 
 			</span>		
             <span class="ox3-widget-input text2 required" id="name" style="">                
-                 @Html.LabelFor(m => m.LoaiAccount, new { @class = "label", @var = "label" }, "<span class='star'>*</span>")
+                 @Html.LabelFor(m => m.LoaiAccount, new { @class = "label", @var = "label" })
                 @if (Model.LoaiAccount == "AD")
                 {
                     @Html.DropDownListFor(m => m.LoaiAccount, lstAccountType, new { @style = "width: 393px;", @onchange = "changeAccountType(this.value);" });
@@ -164,7 +164,7 @@
                 {
                       <span class="ox3-widget-input text2 required" id="idAccountManager" style="display:;">                
                        
-                         @Html.LabelFor(m => m.AccountManager, new { @class = "label", @var = "label" }, "<span class='star'>*</span>")
+                         @Html.LabelFor(m => m.AccountManager, new { @class = "label", @var = "label" })
                         @Html.DropDownListFor(m => m.AccountManager, Model.ListAccountManager, new { @style = "width: 393px;", @class = "chosen-select", @id = "chooseAccountManager" });
                           
 			             <br>

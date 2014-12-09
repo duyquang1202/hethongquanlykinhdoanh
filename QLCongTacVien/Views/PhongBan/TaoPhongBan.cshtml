@@ -96,8 +96,9 @@
             {
 		 	
 			<!--  name -->
-		    <span class="ox3-widget-input text2 required" id="name" style="">                
-                 @Html.LabelFor(m=>m.TenPhongBan,new{@class="label",@var="label"},"<span class='star'>*</span>")
+		    <span class="ox3-widget-input text2 required" id="name" style="">            
+              
+                 @Html.LabelFor(m=>m.TenPhongBan,new{@class="label",@var="label"})
                 @Html.TextBoxFor(m => m.TenPhongBan, new {@class="input",@var="input" })                
 			     <br>
                  @Html.ValidationMessageFor(model => model.TenPhongBan, null, new {@class="error_input",@style="margin-left: 270px;"})
